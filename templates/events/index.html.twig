@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Events index{% endblock %}
+
+{% block body %}
+
+ <div class="container text-center">
+  <h1 class="color">Events Info</h1>
+    <p class="color">Sort for Genres</p>
+    <div class="btn-group">
+        <a href="{{ path('app_filter', {'type':'Musik'}) }}" class="btn btn-secondary">Music</a>
+        <a href="{{ path('app_filter', {'type':'Kultur'}) }}" class="btn btn-secondary">Culture</a>
+        <a href="{{ path('app_filter', {'type':'Theater'}) }}" class="btn btn-secondary">Theater</a>
+    </div>
+
+
+   <div class="mb-2 mt-2">
+      <img src="{{ asset('https://cdn.pixabay.com/photo/2015/06/08/22/37/spotlight-802633_1280.jpg') }}" alt="Lampen" style="height: 3cm; width: 100%;">
+ </div>
+
+
+<div class="row row-cols-lg-5 row-cols-md-4 row-cols-sm-3 row-cols-xs-1">
+    {% for event in events %}
+        {% set cardColors = ['bg-primary', 'bg-secondary', 'bg-success', 'bg-info', 'bg-warning', 'bg-danger'] %}
+        {% set randomColor = cardColors[loop.index0 % cardColors|length] %}
+
+        <div class="col mb-3">
+            <div class="card {{ randomColor }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ event.name }}</h5>
+                    <div class="ratio ratio-16x9 mb-3">
+                        <img src="{{ event.image }}" class="card-img-top" alt="Event Image">
+                    </div>
+                    <p class="card-text">{{ event.dateStartTime ? event.dateStartTime|date('Y-m-d H:i:s') : '' }}</p>
+                    <a class="btn btn-outline-success btn-light w-100"
+                       href="{{ path('app_events_show', { id: event.id }) }}">Detail</a>
+                    <a class="btn btn-outline-primary btn-light w-100"
+                       href="{{ path('app_events_edit', { id: event.id }) }}">Update</a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p>no records found</p>
+    {% endfor %}
+  </div>
+  <a class="btn btn-primary mt-4 m-4" href="{{ path('app_events_new') }}"
+    >Create new</a
+  >
+</div>
+
+{% endblock %}

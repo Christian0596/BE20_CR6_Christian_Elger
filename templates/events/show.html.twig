@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Events{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .card-img-top {
+            width: 300px;
+            height: auto;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+<div class="container text-center">
+    <h1 class="color">Event</h1>
+    <div class="card mx-auto">
+        <div class="card-body bg-black text-white">
+        <h5 class="card-title">{{ event.name }}</h5>
+            <img src="{{ asset(event.image) }}" class="card-img-top img-thumbnail" alt="{{ event.name }}">
+            <p class="card-text">{{ event.description }}</p>
+            <p class="card-text">Capacity: {{ event.capacity }}</p>
+            <p class="card-text">Type: {{ event.type }}</p>
+            <p class="card-text">{{ event.address }}</p>
+            <p class="card-text">{{ event.contactEmail }}</p>
+            <p class="card-text">Number: {{ event.contactNumber }}</p>
+            <a href="{{ event.URL }}"class="card-text text-decoration-none">{{ event.URL }}</a>
+            <p>
+                Start: {{ event.dateStartTime ? event.dateStartTime|date('Y-m-d H:i:s') : '' }}
+            </p>
+        </div>
+    </div>
+
+
+        <a class="btn btn-primary w-100" href="{{ path('app_events_edit', { id: event.id }) }}">Update</a>
+        <a class="btn btn-success w-100" href="{{ path('app_events_index') }}">Back to list</a>
+        {{ include("events/_delete_form.html.twig") }}
+ 
+</div>
+{% endblock %}

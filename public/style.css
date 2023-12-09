@@ -1,0 +1,10 @@
+body {
+    background-image: url('https://cdn.pixabay.com/photo/2018/05/10/11/34/concert-3387324_1280.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+.color{
+    color: aqua;
+}
