@@ -51,7 +51,7 @@ class EventsType extends AbstractType
                     'Theater' => 'Theater',
                 ],
                 'attr' => [
-                    'class' => 'btn btn-lg btn-primary'
+                    'class' => 'btn btn-sm btn-light d-grid gap-2'
                 ],
                 'label_html' => true,
             ])
